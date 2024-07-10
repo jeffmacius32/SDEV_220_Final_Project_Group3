@@ -3,7 +3,7 @@ from django.db import models
 from django.utils import timezone
 
 
-class Post(models.Model):
+class Reservation(models.Model):
     User = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     birthday = models.CharField(max_length=200)
     email = models.CharField(max_length=200)
@@ -11,7 +11,7 @@ class Post(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
     scheduled_date = models.DateTimeField(blank=True, null=True)
 
-    def publish(self):
+    def reserve(self):
         self.scheduled_date = timezone.now()
         self.save()
 
